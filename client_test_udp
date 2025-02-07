@@ -1,0 +1,60 @@
+#!/bin/bash
+
+# Prompt for SSH password (this will be used for all SSH connections)
+SSH_PASSWORD="y7Cv6i9/vacv"
+
+# Optionally, you can set SSH options (e.g., to disable host key checking)
+SSH_OPTS="-o StrictHostKeyChecking=no"
+
+# Define iperf commands for server and client.
+# This example assumes iperf3 is installed.
+IPERF_CLIENT_CMD="iperf -c"
+
+# Round 1
+echo "Testing parallel clients connection"
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf6.usc.edu "$IPERF_CLIENT_CMD 10.0.16.3 -u -t 30 -l 512 -b 1G -p 5001 > log.out" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf7.usc.edu "$IPERF_CLIENT_CMD 10.0.16.3 -u -t 30 -l 512 -b 1G -p 5002 > log.out" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf8.usc.edu "$IPERF_CLIENT_CMD 10.0.16.3 -u -t 30 -l 512 -b 1G -p 5003 > log.out" &
+echo "Round 1 started for 30 seconds" 
+sleep 35
+echo "Round 1 should have completed" 
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf5.usc.edu "$IPERF_CLIENT_CMD 10.0.17.3 -u -t 30 -l 512 -b 1G -p 6001 > log.out" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf7.usc.edu "$IPERF_CLIENT_CMD 10.0.17.3 -u -t 30 -l 512 -b 1G -p 6002 > log.out" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf8.usc.edu "$IPERF_CLIENT_CMD 10.0.17.3 -u -t 30 -l 512 -b 1G -p 6003 > log.out" &
+echo "Round 2 started for 30 seconds" 
+sleep 35
+echo "Round 2 should have completed" 
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf5.usc.edu "$IPERF_CLIENT_CMD 10.0.18.3 -u -t 30 -l 512 -b 1G -p 7001 > log.out" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf6.usc.edu "$IPERF_CLIENT_CMD 10.0.18.3 -u -t 30 -l 512 -b 1G -p 7002 > log.out" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf8.usc.edu "$IPERF_CLIENT_CMD 10.0.18.3 -u -t 30 -l 512 -b 1G -p 7003 > log.out" &
+echo "Round 3 started for 30 seconds"
+sleep 35
+echo "Round 3 should have completed"
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf5.usc.edu "$IPERF_CLIENT_CMD 10.0.19.3 -u -t 30 -l 512 -b 1G -p 8001 > log.out" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf7.usc.edu "$IPERF_CLIENT_CMD 10.0.19.3 -u -t 30 -l 512 -b 1G -p 8002 > log.out" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf6.usc.edu "$IPERF_CLIENT_CMD 10.0.19.3 -u -t 30 -l 512 -b 1G -p 8003 > log.out" &
+echo "Round 4 started for 30 seconds"
+sleep 35
+echo "Round 4 should have completed"
+
+echo "Completed parallel clients connection"
+
+echo "Testing serial clients connection on node 0"
+
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf6.usc.edu "$IPERF_CLIENT_CMD 10.0.16.3 -u -t 30 -l 512 -b 1G -p 5001 > log.out" &
+sleep 35
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf7.usc.edu "$IPERF_CLIENT_CMD 10.0.16.3 -u -t 30 -l 512 -b 1G -p 5002 > log.out" &
+sleep 35
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf8.usc.edu "$IPERF_CLIENT_CMD 10.0.16.3 -u -t 30 -l 512 -b 1G -p 5003 > log.out" &
+sleep 35
+
+echo "Completed serial clients connection on node 0"
+
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf5.usc.edu "./cat_out" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf6.usc.edu "./cat_out" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf7.usc.edu "./cat_out" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf8.usc.edu "./cat_out" &
+
+wait
+
+echo "Output files concatenated"

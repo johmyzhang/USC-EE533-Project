@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# Prompt for SSH password (this will be used for all SSH connections)
+SSH_PASSWORD="y7Cv6i9/vacv"
+
+# Optionally, you can set SSH options (e.g., to disable host key checking)
+SSH_OPTS="-o StrictHostKeyChecking=no"
+
+# Define iperf commands for server and client.
+# This example assumes iperf3 is installed.
+IPERF_SERVER_CMD="iperf -s"
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf5.usc.edu "pkill -9 iperf" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf6.usc.edu "pkill -9 iperf" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf7.usc.edu "pkill -9 iperf" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf8.usc.edu "pkill -9 iperf" &
+wait
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf5.usc.edu "$IPERF_SERVER_CMD -p 5001 > p1.out & $IPERF_SERVER_CMD -p 5002 > p2.out & $IPERF_SERVER_CMD -p 5003 > p3.out &" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf6.usc.edu "$IPERF_SERVER_CMD -p 6001 > p1.out & $IPERF_SERVER_CMD -p 6002 > p2.out & $IPERF_SERVER_CMD -p 6003 > p3.out &" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf7.usc.edu "$IPERF_SERVER_CMD -p 7001 > p1.out & $IPERF_SERVER_CMD -p 7002 > p2.out & $IPERF_SERVER_CMD -p 7003 > p3.out &" &
+sshpass -p "$SSH_PASSWORD" ssh $SSH_OPTS node4@nf8.usc.edu "$IPERF_SERVER_CMD -p 8001 > p1.out & $IPERF_SERVER_CMD -p 8002 > p2.out & $IPERF_SERVER_CMD -p 8003 > p3.out &" &
