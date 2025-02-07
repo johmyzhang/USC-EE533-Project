@@ -1,0 +1,5 @@
+Overwrite all of the files into reference_router design in NetFPGA_v2.2 package in addition to the files generated from the schematics.  Then 'make' in synth directory.
+
+Find idsreg script in sw folder and use it to configure the IDS.
+
+idsreg may need to be modified so that the addresses to the software registers are correct.  After the compilation, files under lib/* contains the correct register addresses.

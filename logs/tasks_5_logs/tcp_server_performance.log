@@ -1,0 +1,128 @@
+=== Starting iperf server on n0 ===
+n1 -> n0
+------------------------------------------------------------
+Client connecting to 10.0.16.3, TCP port 5001
+TCP window size: 16.0 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.17.3 port 57056 connected with 10.0.16.3 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 2.0 sec  24.4 MBytes   100 Mbits/sec
+
+n2 -> n0
+------------------------------------------------------------
+Client connecting to 10.0.16.3, TCP port 5001
+TCP window size: 16.0 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.18.3 port 46835 connected with 10.0.16.3 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 2.0 sec  22.9 MBytes  95.1 Mbits/sec
+
+n3 -> n0
+------------------------------------------------------------
+Client connecting to 10.0.16.3, TCP port 5001
+TCP window size: 16.0 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.19.3 port 35051 connected with 10.0.16.3 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 2.0 sec  22.4 MBytes  92.0 Mbits/sec
+
+=== Stopping iperf server on n0 ===
+
+
+============================================
+=== Starting iperf server on n1 ===
+n0 -> n1
+------------------------------------------------------------
+Client connecting to 10.0.17.3, TCP port 5001
+TCP window size: 16.0 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.16.3 port 49811 connected with 10.0.17.3 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 2.0 sec  24.6 MBytes   101 Mbits/sec
+
+n2 -> n1
+------------------------------------------------------------
+Client connecting to 10.0.17.3, TCP port 5001
+TCP window size: 16.0 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.18.3 port 55473 connected with 10.0.17.3 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 2.0 sec  22.8 MBytes  94.6 Mbits/sec
+
+n3 -> n1
+------------------------------------------------------------
+Client connecting to 10.0.17.3, TCP port 5001
+TCP window size: 16.0 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.19.3 port 35930 connected with 10.0.17.3 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 2.0 sec  23.1 MBytes  96.4 Mbits/sec
+
+=== Stopping iperf server on n1 ===
+
+
+============================================
+=== Starting iperf server on n2 ===
+n0 -> n2
+------------------------------------------------------------
+Client connecting to 10.0.18.3, TCP port 5001
+TCP window size: 16.0 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.16.3 port 40436 connected with 10.0.18.3 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 2.0 sec  22.0 MBytes  92.2 Mbits/sec
+
+n1 -> n2
+------------------------------------------------------------
+Client connecting to 10.0.18.3, TCP port 5001
+TCP window size: 16.0 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.17.3 port 51637 connected with 10.0.18.3 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 2.0 sec  24.1 MBytes  99.5 Mbits/sec
+
+n3 -> n2
+------------------------------------------------------------
+Client connecting to 10.0.18.3, TCP port 5001
+TCP window size: 16.0 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.19.3 port 54230 connected with 10.0.18.3 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 2.0 sec  21.9 MBytes  90.2 Mbits/sec
+
+=== Stopping iperf server on n2 ===
+
+
+============================================
+=== Starting iperf server on n3 ===
+n0 -> n3
+------------------------------------------------------------
+Client connecting to 10.0.19.3, TCP port 5001
+TCP window size: 16.0 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.16.3 port 42289 connected with 10.0.19.3 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 2.0 sec  20.6 MBytes  85.7 Mbits/sec
+
+n1 -> n3
+------------------------------------------------------------
+Client connecting to 10.0.19.3, TCP port 5001
+TCP window size: 16.0 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.17.3 port 47334 connected with 10.0.19.3 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 2.0 sec  20.5 MBytes  85.8 Mbits/sec
+
+n2 -> n3
+------------------------------------------------------------
+Client connecting to 10.0.19.3, TCP port 5001
+TCP window size: 16.0 KByte (default)
+------------------------------------------------------------
+[  3] local 10.0.18.3 port 49506 connected with 10.0.19.3 port 5001
+[ ID] Interval       Transfer     Bandwidth
+[  3]  0.0- 2.1 sec  20.9 MBytes  85.4 Mbits/sec
+
+=== Stopping iperf server on n3 ===
+
+
+============================================
