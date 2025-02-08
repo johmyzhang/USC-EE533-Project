@@ -21,7 +21,7 @@
 			<nf:description>Command Register</nf:description>
 			<nf:type>generic_software32</nf:type>
 		</nf:register>
-        	<nf:register>
+        <nf:register>
 		  <nf:name>matches</nf:name>
 			<nf:description>Match Count Register</nf:description>
 			<nf:type>generic_hardware32</nf:type>
